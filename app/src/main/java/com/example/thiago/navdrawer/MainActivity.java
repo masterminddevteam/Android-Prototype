@@ -1,9 +1,10 @@
-package com.example.rafael.app1;
+package com.example.thiago.navdrawer;
 
-import android.content.Intent;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentTabHost;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,10 +14,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    android.support.v4.app.FragmentTransaction fragmentTransaction;
+    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,14 +37,48 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+            this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.add(R.id.main_container, new HomeFragment());
+        fragmentTransaction.commit();
+        getSupportActionBar().setTitle("Home");
+        navigationView = (NavigationView)findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem item) {
+                switch (item.getItemId())
+                {
+                    case R.id.nav_gallery:
+                        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.main_container,new HomeFragment());
+                        fragmentTransaction.commit();
+                        getSupportActionBar().setTitle("Home");
+                        item.setChecked(true);
+                        drawer.closeDrawers();
+                        break;
+
+                    case R.id.nav_slideshow:
+                        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.main_container, new CalculaMedia());
+                        fragmentTransaction.commit();
+                        getSupportActionBar().setTitle("Calculadora de Média");
+                        item.setChecked(true);
+                        drawer.closeDrawers();
+                        break;
+                }
+                return false;
+            }
+        });
+
+
     }
 
     @Override
@@ -83,22 +120,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-
-            /*Button button1;
-            button1 = (Button)findViewById(R.id.button_go_activity2);
-            assert button1 != null;
-            button1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent i = new Intent(MainActivity.this, Activity2.class);
-                    startActivity(i);
-                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                }
-            });*/
-
-            Intent i = new Intent(MainActivity.this, Activity2.class);
-            startActivity(i);
-
+            // Handle the camera action
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {

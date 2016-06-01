@@ -1,4 +1,4 @@
-package com.example.rafael.app1;
+package com.example.thiago.navdrawer;
 
 import org.junit.Test;
 
