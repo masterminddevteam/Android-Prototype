@@ -1,3 +1,0 @@
-# Android-Prototype
-
-Laboratorio android
