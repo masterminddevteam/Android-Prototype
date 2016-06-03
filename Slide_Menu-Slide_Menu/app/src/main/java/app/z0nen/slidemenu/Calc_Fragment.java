@@ -1,16 +1,20 @@
 package app.z0nen.slidemenu;
 
 
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import java.util.concurrent.ExecutionException;
 
 import app.z0nen.slidemenu.R;
 
@@ -19,7 +23,7 @@ import app.z0nen.slidemenu.R;
  */
 public class Calc_Fragment extends Fragment {
 
-   /* private Button btnOk;
+    private Button btnOk;
     private EditText txtTexto;
     private TextView txtView;
 
@@ -28,9 +32,9 @@ public class Calc_Fragment extends Fragment {
     private EditText txtNota1;
     private EditText txtNota2;
 
-    private int media;
-    private int nota1;
-    private int nota2;*/
+    private String media;
+    private String nota1;
+    private String nota2;
 
     public Calc_Fragment() {
         // Required empty public constructor
@@ -40,37 +44,44 @@ public class Calc_Fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        /*txtView = (TextView)getView().findViewById(R.id.txtView);
-
-        btnCalcular = (Button)getView().findViewById(R.id.btnCalcular);
-        lblMedia = (TextView)getView().findViewById(R.id.lblMedia);
-        txtNota1 = (EditText)getView().findViewById(R.id.txtNota1);
-        txtNota2 = (EditText)getView().findViewById(R.id.txtNota2);
-
-
-        btnCalcular.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                nota1 = Integer.parseInt(String.valueOf(txtNota1.getText()));
-                nota2 = Integer.parseInt(String.valueOf(txtNota2.getText()));
-                media = (nota1 + nota2) / 2;
-
-                if(media <= 5){
-
-                    lblMedia.setText("Media: " + media);
-                    txtView.setText("Reprovado");
-                }
-                else{
-
-                    lblMedia.setText("Media: " + media);
-                    txtView.setText("Aprovado");
-                }
-
-
-            }
-        });*/
-
         rootview = inflater.inflate(R.layout.fragment_calc, container, false);
+            txtView = (TextView) rootview.findViewById(R.id.txtView);
+
+
+            btnCalcular = (Button) rootview.findViewById(R.id.btnCalcular);
+            lblMedia = (TextView) rootview.findViewById(R.id.lblMedia);
+            txtNota1 = (EditText) rootview.findViewById(R.id.txtNota1);
+            txtNota2 = (EditText) rootview.findViewById(R.id.txtNota2);
+
+
+            btnCalcular.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    nota1 = Integer.parseInt(String.valueOf(txtNota1.getText());
+                    nota2 = Integer.parseInt(String.valueOf(txtNota2.getText());
+                    if(nota1 == 0 || nota2 == 0){
+                        txtView.setText("Preencha as duas notas!");
+                    }
+                    else {
+
+                        media = (nota1 + nota2) / 2;
+
+
+                        if (media <= 5) {
+                            lblMedia.setText("Media: " + media);
+                            txtView.setText("Reprovado");
+                        } else {
+                            lblMedia.setText("Media: " + media);
+                            txtView.setText("Aprovado");
+                        }
+                    }
+
+
+
+
+                }
+            });
+
         return rootview;
     }
 

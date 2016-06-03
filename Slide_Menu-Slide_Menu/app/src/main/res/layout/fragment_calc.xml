@@ -9,7 +9,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
         android:id="@+id/txtView"
         android:layout_alignTop="@+id/txtNota2"
         android:layout_alignLeft="@+id/lblMedia"
