@@ -32,7 +32,7 @@ public class Calc_Fragment extends Fragment {
     private EditText txtNota1;
     private EditText txtNota2;
 
-    private String media;
+    private float media;
     private String nota1;
     private String nota2;
 
@@ -57,14 +57,14 @@ public class Calc_Fragment extends Fragment {
             btnCalcular.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    nota1 = Integer.parseInt(String.valueOf(txtNota1.getText());
-                    nota2 = Integer.parseInt(String.valueOf(txtNota2.getText());
-                    if(nota1 == 0 || nota2 == 0){
+                    nota1 = txtNota1.getText().toString();
+                    nota2 = txtNota2.getText().toString();
+                    if(nota1.equals("") && nota2.equals("")){
                         txtView.setText("Preencha as duas notas!");
                     }
                     else {
 
-                        media = (nota1 + nota2) / 2;
+                        media = (Float.parseFloat(nota1) + Float.parseFloat(nota2)) / 2;
 
 
                         if (media <= 5) {
