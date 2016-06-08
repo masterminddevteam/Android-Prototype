@@ -3,6 +3,7 @@ package app.z0nen.slidemenu;
 
 import android.app.AlertDialog;
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.app.Fragment;
@@ -29,6 +30,7 @@ public class Calc_Fragment extends Fragment {
     private TextView txtView;
 
     private Button btnCalcular;
+    private Button btnFragment;
     private TextView lblMedia;
     private EditText txtNota1;
     private EditText txtNota2;
@@ -54,6 +56,7 @@ public class Calc_Fragment extends Fragment {
 
 
             btnCalcular = (Button) rootview.findViewById(R.id.btnCalcular);
+            btnFragment = (Button) rootview.findViewById(R.id.btnFragment);
             lblMedia = (TextView) rootview.findViewById(R.id.lblMedia);
             txtNota1 = (EditText) rootview.findViewById(R.id.txtNota1);
             txtNota2 = (EditText) rootview.findViewById(R.id.txtNota2);
@@ -93,14 +96,22 @@ public class Calc_Fragment extends Fragment {
                             toast.show();
                         }
                     }
+                }
+            });
 
-
-
-
+            btnFragment.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Fragment objFragment = null;
+                    objFragment = new Calc_Fragment2();
+                    // update the main content by replacing fragments
+                    FragmentManager fragmentManager = getFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.container, objFragment)
+                            .commit();
                 }
             });
 
         return rootview;
     }
-
 }

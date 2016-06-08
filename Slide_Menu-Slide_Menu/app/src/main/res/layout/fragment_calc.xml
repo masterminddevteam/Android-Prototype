@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:gravity="center_horizontal">
 
     <!-- TODO: Update blank fragment layout -->
@@ -67,5 +69,18 @@
         android:layout_alignBottom="@+id/txtNota1"
         android:layout_alignRight="@+id/btnCalcular"
         android:layout_alignEnd="@+id/btnCalcular" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fragment"
+        android:id="@+id/btnFragment"
+        android:layout_below="@+id/lblMedia"
+        android:layout_centerHorizontal="true" />
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </RelativeLayout>
